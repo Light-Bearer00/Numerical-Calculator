@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerical Methods Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Numerical Methods Calculator</h1>
+        </header>
+
+        <nav class="chapters">
+            <button class="chapter-btn" data-chapter="1">Chapter 1: Solving Equations</button>
+            <button class="chapter-btn" data-chapter="2">Chapter 2: Linear Algebra</button>
+            <button class="chapter-btn" data-chapter="3">Chapter 3: Optimization</button>
+        </nav>
+
+        <main>
+            <!-- Chapter 1 Content -->
+            <section id="chapter1" class="chapter-content active">
+                <h2>Solving Equations</h2>
+                <div class="method-selector">
+                    <select id="method-select">
+                        <option value="bisection">Bisection Method</option>
+                        <option value="false-position">False Position Method</option>
+                        <option value="fixed-point">Simple Fixed Point Method</option>
+                        <option value="newton">Newton-Raphson Method</option>
+                        <option value="secant">Secant Method</option>
+                    </select>
+                </div>
+
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="function-input">Function f(x):</label>
+                        <input type="text" id="function-input" placeholder="e.g., x^3 - x - 2">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="x0-input">Initial Guess/Point 1 (x₀):</label>
+                        <input type="number" id="x0-input" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="x1-input">Point 2 (x₁):</label>
+                        <input type="number" id="x1-input" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="tolerance-input">Tolerance:</label>
+                        <input type="number" id="tolerance-input" value="0.0001" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="max-iterations-input">Max Iterations:</label>
+                        <input type="number" id="max-iterations-input" value="100">
+                    </div>
+                </div>
+
+                <button id="calculate-btn" class="calculate-btn">Calculate</button>
+
+                <div class="results-section">
+                    <h3>Results</h3>
+                    <div id="result-output" class="result-output"></div>
+                    <div id="steps-output" class="steps-output"></div>
+                </div>
+            </section>
+
+            <!-- Chapter 2 Content -->
+            <section id="chapter2" class="chapter-content">
+                <h2>Linear Algebraic Equations</h2>
+                <div class="method-selector">
+                    <select id="linear-method-select">
+                        <option value="gauss">Gaussian Elimination (No Pivoting)</option>
+                        <option value="gauss-pivot">Gaussian Elimination (Partial Pivoting)</option>
+                        <option value="gauss-jordan">Gauss-Jordan Elimination (No Pivoting)</option>
+                        <option value="gauss-jordan-pivot">Gauss-Jordan Elimination (Partial Pivoting)</option>
+                        <option value="lu">LU Decomposition</option>
+                        <option value="lu-pivot">LU Decomposition (Partial Pivoting)</option>
+                        <option value="cramer">Cramer's Rule</option>
+                    </select>
+                </div>
+
+                <div class="matrix-input-section">
+                    <div class="matrix-size-selector">
+                        <label for="matrix-size">Matrix Size (n x n):</label>
+                        <input type="number" id="matrix-size" min="2" max="10" value="3">
+                        <button id="generate-matrix-btn">Generate Matrix</button>
+                    </div>
+
+                    <div class="matrix-container">
+                        <div class="coefficients-matrix">
+                            <h3>Coefficients Matrix (A)</h3>
+                            <div id="coefficients-input"></div>
+                        </div>
+                        <div class="constants-vector">
+                            <h3>Constants Vector (b)</h3>
+                            <div id="constants-input"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="solve-linear-btn" class="calculate-btn">Solve</button>
+
+                <div class="results-section">
+                    <h3>Results</h3>
+                    <div id="linear-result-output" class="result-output"></div>
+                    <div id="linear-steps-output" class="steps-output"></div>
+                </div>
+            </section>
+
+            <!-- Chapter 3 Content -->
+            <section id="chapter3" class="chapter-content">
+                <h2>Unconstrained Optimization</h2>
+                <div class="method-selector">
+                    <select id="optimization-method-select">
+                        <option value="golden-section">Golden-Section Search</option>
+                        <option value="gradient">Gradient Descent</option>
+                    </select>
+                </div>
+
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="optimization-function-input">Function f(x):</label>
+                        <input type="text" id="optimization-function-input" placeholder="e.g., x^2 - 4x + 4">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="optimization-x0-input">Initial Point (x₀):</label>
+                        <input type="number" id="optimization-x0-input" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="optimization-x1-input">Upper Bound (x₁):</label>
+                        <input type="number" id="optimization-x1-input" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="optimization-tolerance-input">Tolerance:</label>
+                        <input type="number" id="optimization-tolerance-input" value="0.0001" step="any">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="optimization-max-iterations-input">Max Iterations:</label>
+                        <input type="number" id="optimization-max-iterations-input" value="100">
+                    </div>
+
+                    <div class="input-group" id="learning-rate-group" style="display: none;">
+                        <label for="learning-rate-input">Learning Rate (α):</label>
+                        <input type="number" id="learning-rate-input" value="0.1" step="any">
+                    </div>
+                </div>
+
+                <button id="optimize-btn" class="calculate-btn">Optimize</button>
+
+                <div class="results-section">
+                    <h3>Results</h3>
+                    <div id="optimization-result-output" class="result-output"></div>
+                    <div id="optimization-steps-output" class="steps-output"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
