@@ -56,10 +56,3 @@ Examples:
 - Responsive design that works on desktop and mobile devices
 - Step-by-step solution display for better understanding
 
-## Future Improvements
-
-- Add visualization of the functions and iterations
-- Implement remaining chapters (Linear Algebra and Optimization)
-- Add support for multiple variables
-- Include more numerical methods
-- Add export functionality for results 
